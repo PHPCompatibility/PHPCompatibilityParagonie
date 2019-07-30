@@ -75,6 +75,8 @@
         <exclude name="PHPCompatibility.Constants.NewConstants.sodium_crypto_sign_keypairbytesFound"/>
         <exclude name="PHPCompatibility.Constants.NewConstants.sodium_crypto_stream_keybytesFound"/>
         <exclude name="PHPCompatibility.Constants.NewConstants.sodium_crypto_stream_noncebytesFound"/>
+        <exclude name="PHPCompatibility.Constants.NewConstants.sodium_library_version_majorFound"/>
+        <exclude name="PHPCompatibility.Constants.NewConstants.sodium_library_version_minorFound"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.sodium_bin2hexFound"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.sodium_compareFound"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.sodium_crypto_aead_aes256gcm_decryptFound"/>
