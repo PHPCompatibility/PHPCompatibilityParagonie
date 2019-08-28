@@ -184,5 +184,8 @@
     <rule ref="PHPCompatibility.FunctionUse.NewFunctions.sodium_memzeroFound">
         <exclude-pattern>/sodium_compat/src/Compat\.php$</exclude-pattern>
     </rule>
+    <rule ref="PHPCompatibility.IniDirectives.RemovedIniDirectives.mbstring_func_overloadDeprecated">
+        <exclude-pattern>/sodium_compat/src/Core/Util\.php$</exclude-pattern>
+    </rule>
 
 </ruleset>
