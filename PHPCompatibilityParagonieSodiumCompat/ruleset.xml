@@ -145,4 +145,42 @@
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.sodium_randombytes_random16Found"/>
     </rule>
 
+    <!-- Prevent false positives being thrown when run over the code of sodium_compat itself. -->
+    <rule ref="PHPCompatibility.FunctionNameRestrictions.NewMagicMethods.__debuginfoFound">
+        <exclude-pattern>/sodium_compat/src/Core(32)?/Curve25519/Fe\.php$</exclude-pattern>
+    </rule>
+    <rule ref="PHPCompatibility.FunctionUse.NewFunctions.hash_equalsFound">
+        <exclude-pattern>/sodium_compat/src/Core/Util\.php$</exclude-pattern>
+    </rule>
+    <rule ref="PHPCompatibility.ParameterValues.NewPackFormat.NewFormatFound">
+        <exclude-pattern>/sodium_compat/src/Core/Util\.php$</exclude-pattern>
+    </rule>
+    <rule ref="PHPCompatibility.FunctionUse.NewFunctionParameters.openssl_decrypt_ivFound">
+        <exclude-pattern>/sodium_compat/src/Compat\.php$</exclude-pattern>
+    </rule>
+    <rule ref="PHPCompatibility.FunctionUse.NewFunctionParameters.openssl_decrypt_tagFound">
+        <exclude-pattern>/sodium_compat/src/Compat\.php$</exclude-pattern>
+    </rule>
+    <rule ref="PHPCompatibility.FunctionUse.NewFunctionParameters.openssl_decrypt_aadFound">
+        <exclude-pattern>/sodium_compat/src/Compat\.php$</exclude-pattern>
+    </rule>
+    <rule ref="PHPCompatibility.FunctionUse.NewFunctionParameters.openssl_encrypt_ivFound">
+        <exclude-pattern>/sodium_compat/src/Compat\.php$</exclude-pattern>
+    </rule>
+    <rule ref="PHPCompatibility.FunctionUse.NewFunctionParameters.openssl_encrypt_tagFound">
+        <exclude-pattern>/sodium_compat/src/Compat\.php$</exclude-pattern>
+    </rule>
+    <rule ref="PHPCompatibility.FunctionUse.NewFunctionParameters.openssl_encrypt_aadFound">
+        <exclude-pattern>/sodium_compat/src/Compat\.php$</exclude-pattern>
+    </rule>
+    <rule ref="PHPCompatibility.Constants.NewConstants.openssl_raw_dataFound">
+        <exclude-pattern>/sodium_compat/src/Compat\.php$</exclude-pattern>
+    </rule>
+    <rule ref="PHPCompatibility.FunctionUse.NewFunctions.sodium_crypto_pwhashFound">
+        <exclude-pattern>/sodium_compat/src/Compat\.php$</exclude-pattern>
+    </rule>
+    <rule ref="PHPCompatibility.FunctionUse.NewFunctions.sodium_memzeroFound">
+        <exclude-pattern>/sodium_compat/src/Compat\.php$</exclude-pattern>
+    </rule>
+
 </ruleset>
