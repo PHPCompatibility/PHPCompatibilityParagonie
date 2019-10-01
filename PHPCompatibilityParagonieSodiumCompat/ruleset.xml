@@ -77,6 +77,9 @@
         <exclude name="PHPCompatibility.Constants.NewConstants.sodium_crypto_stream_noncebytesFound"/>
         <exclude name="PHPCompatibility.Constants.NewConstants.sodium_library_version_majorFound"/>
         <exclude name="PHPCompatibility.Constants.NewConstants.sodium_library_version_minorFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.sodium_addFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.sodium_base642binFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.sodium_bin2base64Found"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.sodium_bin2hexFound"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.sodium_compareFound"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.sodium_crypto_aead_aes256gcm_decryptFound"/>
@@ -109,8 +112,17 @@
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.sodium_crypto_generichash_initFound"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.sodium_crypto_generichash_keygenFound"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.sodium_crypto_generichash_updateFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.sodium_crypto_kdf_derive_from_keyFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.sodium_crypto_kdf_keygenFound"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.sodium_crypto_kxFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.sodium_crypto_kx_client_session_keysFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.sodium_crypto_kx_keypairFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.sodium_crypto_kx_publickeyFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.sodium_crypto_kx_secretkeyFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.sodium_crypto_kx_seed_keypairFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.sodium_crypto_kx_server_session_keysFound"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.sodium_crypto_pwhash_strFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.sodium_crypto_pwhash_str_needs_rehashFound"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.sodium_crypto_pwhash_str_verifyFound"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.sodium_crypto_pwhash_scryptsalsa208sha256Found"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.sodium_crypto_pwhash_scryptsalsa208sha256_strFound"/>
@@ -120,11 +132,18 @@
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.sodium_crypto_secretboxFound"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.sodium_crypto_secretbox_keygenFound"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.sodium_crypto_secretbox_openFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.sodium_crypto_secretstream_xchacha20poly1305_keygenFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.sodium_crypto_secretstream_xchacha20poly1305_init_pullFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.sodium_crypto_secretstream_xchacha20poly1305_init_pushFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.sodium_crypto_secretstream_xchacha20poly1305_pullFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.sodium_crypto_secretstream_xchacha20poly1305_pushFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.sodium_crypto_secretstream_xchacha20poly1305_rekeyFound"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.sodium_crypto_shorthashFound"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.sodium_crypto_shorthash_keygenFound"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.sodium_crypto_signFound"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.sodium_crypto_sign_detachedFound"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.sodium_crypto_sign_keypairFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.sodium_crypto_sign_keypair_from_secretkey_and_publickeyFound"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.sodium_crypto_sign_openFound"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.sodium_crypto_sign_publickeyFound"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.sodium_crypto_sign_publickey_from_secretkeyFound"/>
@@ -142,9 +161,11 @@
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.sodium_library_version_minorFound"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.sodium_version_stringFound"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.sodium_memcmpFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.sodium_padFound"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.sodium_randombytes_bufFound"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.sodium_randombytes_uniformFound"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.sodium_randombytes_random16Found"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.sodium_unpadFound"/>
     </rule>
 
     <!-- Prevent false positives being thrown when run over the code of sodium_compat itself. -->
