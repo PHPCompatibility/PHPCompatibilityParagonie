@@ -98,6 +98,10 @@ All code within the PHPCompatibility organisation is released under the GNU Less
 
 ## Changelog
 
+### 1.2.0 - 2019-10-16
+
+* Ruleset update for full compatibility with version [`1.11.0` of `sodium_compat`](https://github.com/paragonie/sodium_compat/releases/tag/v1.11.0).
+
 ### 1.1.0 - 2019-08-29
 
 * The `PHPCompatibilityParagonieSodiumCompat` ruleset has been updated to account for the latest changes in the `sodium_compat` polyfill.
