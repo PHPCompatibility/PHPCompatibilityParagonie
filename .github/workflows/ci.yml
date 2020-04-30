@@ -82,7 +82,7 @@ jobs:
 
           # Experimental builds against PHPCompatibility 10.
           - php: '7.4'
-            phpcompat: 'dev-develop as 9.99.99'
+            phpcompat: 'dev-develop as 10.99.99'
             sodium: '1'
           - php: '8.1'
             phpcompat: 'dev-develop as 9.99.99'
@@ -125,24 +125,45 @@ jobs:
 
       # Make sure that known polyfills don't trigger any errors.
       - name: Test the RandomCompat ruleset
-        run: vendor/bin/phpcs -ps ./Test/ParagonieRandomCompatTest.php --standard=PHPCompatibilityParagonieRandomCompat --runtime-set testVersion 5.2-
+        run: >
+          vendor/bin/phpcs -ps ./Test/ParagonieRandomCompatTest.php --standard=PHPCompatibilityParagonieRandomCompat
+          --exclude=PHPCompatibility.Upgrade.LowPHP
+          --runtime-set testVersion 5.2-
 
       - name: "Test the SodiumCompat ruleset (1.x)"
         if: ${{ matrix.sodium != 'dev' }}
-        run: vendor/bin/phpcs -ps ./Test/ParagonieSodiumCompatTest.php --standard=PHPCompatibilityParagonieSodiumCompat --runtime-set testVersion 5.3-
+        run: >
+          vendor/bin/phpcs -ps ./Test/ParagonieSodiumCompatTest.php --standard=PHPCompatibilityParagonieSodiumCompat
+          --exclude=PHPCompatibility.Upgrade.LowPHP
+          --runtime-set testVersion 5.3-
 
       - name: "Test the SodiumCompat ruleset (2.x)"
         if: ${{ matrix.sodium == 'dev' }}
-        run: vendor/bin/phpcs -ps ./Test/ParagonieSodiumCompatTest.php --standard=PHPCompatibilityParagonieSodiumCompat --runtime-set testVersion 8.1-
+        run: >
+          vendor/bin/phpcs -ps ./Test/ParagonieSodiumCompatTest.php --standard=PHPCompatibilityParagonieSodiumCompat
+          --exclude=PHPCompatibility.Upgrade.LowPHP
+          --runtime-set testVersion 8.1-
 
       # Check that the rulesets don't throw unnecessary errors for the compat libraries themselves.
       - name: Test running against the RandomCompat polyfills
-        run: vendor/bin/phpcs -ps ./vendor/paragonie/random_compat/ --standard=PHPCompatibilityParagonieRandomCompat --runtime-set testVersion 5.2- --ignore=/random_compat/psalm-autoload.php,/random_compat/phpunit-autoload.php,/random_compat/tests/*,/random_compat/other/*
+        run: >
+          vendor/bin/phpcs -ps ./vendor/paragonie/random_compat/ --standard=PHPCompatibilityParagonieRandomCompat
+          --exclude=PHPCompatibility.Upgrade.LowPHP
+          --ignore=/random_compat/psalm-autoload.php,/random_compat/phpunit-autoload.php,/random_compat/tests/*,/random_compat/other/*
+          --runtime-set testVersion 5.2-
 
       - name: "Test running against the SodiumCompat polyfills (1.x)"
         if: ${{ matrix.sodium != 'dev' }}
-        run: vendor/bin/phpcs -ps ./vendor/paragonie/sodium_compat/ --standard=PHPCompatibilityParagonieSodiumCompat --runtime-set testVersion 5.3- --ignore=/sodium_compat/tests/*
+        run: >
+          vendor/bin/phpcs -ps ./vendor/paragonie/sodium_compat/ --standard=PHPCompatibilityParagonieSodiumCompat
+          --exclude=PHPCompatibility.Upgrade.LowPHP
+          --ignore=/sodium_compat/tests/*
+          --runtime-set testVersion 5.3-
 
       - name: "Test running against the SodiumCompat polyfills (2.x)"
         if: ${{ matrix.sodium == 'dev' }}
-        run: vendor/bin/phpcs -ps ./vendor/paragonie/sodium_compat/ --standard=PHPCompatibilityParagonieSodiumCompat --runtime-set testVersion 8.1- --ignore=/sodium_compat/tests/*
+        run: >
+          vendor/bin/phpcs -ps ./vendor/paragonie/sodium_compat/ --standard=PHPCompatibilityParagonieSodiumCompat
+          --exclude=PHPCompatibility.Upgrade.LowPHP
+          --ignore=/sodium_compat/tests/*
+          --runtime-set testVersion 8.1-
