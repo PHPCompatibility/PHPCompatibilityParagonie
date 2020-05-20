@@ -10,7 +10,7 @@ cache:
 matrix:
   fast_finish: true
   include:
-    - php: 7.3
+    - php: 7.4
       addons:
         apt:
           packages:
@@ -26,7 +26,7 @@ before_install:
 
 script:
   - |
-    if [[ $TRAVIS_PHP_VERSION == "7.3" ]]; then
+    if [[ $TRAVIS_PHP_VERSION == "7.4" ]]; then
       # Validate the xml files.
       # @link http://xmlsoft.org/xmllint.html
       xmllint --noout ./*/ruleset.xml
