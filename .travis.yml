@@ -54,7 +54,7 @@ script:
   - vendor/bin/phpcs ./Test/ParagonieSodiumCompatTest.php --standard=PHPCompatibilityParagonieSodiumCompat --runtime-set testVersion 5.3-
 
   # Check that the rulesets don't throw unnecessary errors for the compat libraries themselves.
-  - vendor/bin/phpcs ./vendor/paragonie/random_compat/ --standard=PHPCompatibilityParagonieRandomCompat --runtime-set testVersion 5.2- --ignore=/random_compat/tests/*,/random_compat/other/*
+  - vendor/bin/phpcs ./vendor/paragonie/random_compat/ --standard=PHPCompatibilityParagonieRandomCompat --runtime-set testVersion 5.2- --ignore=/random_compat/psalm-autoload.php,/random_compat/phpunit-autoload.php,/random_compat/tests/*,/random_compat/other/*
   - vendor/bin/phpcs ./vendor/paragonie/sodium_compat/ --standard=PHPCompatibilityParagonieSodiumCompat --runtime-set testVersion 5.3- --ignore=/sodium_compat/tests/*
 
   # Validate the composer.json file.
