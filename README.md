@@ -1,7 +1,7 @@
 [![Latest Stable Version](https://poser.pugx.org/phpcompatibility/phpcompatibility-paragonie/v/stable.png)](https://packagist.org/packages/phpcompatibility/phpcompatibility-paragonie)
 [![Latest Unstable Version](https://poser.pugx.org/phpcompatibility/phpcompatibility-paragonie/v/unstable.png)](https://packagist.org/packages/phpcompatibility/phpcompatibility-paragonie)
 [![License](https://poser.pugx.org/phpcompatibility/phpcompatibility-paragonie/license.png)](https://github.com/PHPCompatibility/PHPCompatibilityParagonie/blob/master/LICENSE)
-[![Build Status](https://travis-ci.org/PHPCompatibility/PHPCompatibilityParagonie.svg?branch=master)](https://travis-ci.org/PHPCompatibility/PHPCompatibilityParagonie)
+[![Build Status](https://github.com/PHPCompatibility/PHPCompatibilityParagonie/workflows/Validate/badge.svg?branch=master)](https://github.com/PHPCompatibility/PHPCompatibilityParagonie/actions)
 
 # PHPCompatibilityParagonie
 
