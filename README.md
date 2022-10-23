@@ -97,12 +97,20 @@ All code within the PHPCompatibility organisation is released under the GNU Less
 
 ## Changelog
 
+### 1.3.2 - 2022-10-25
+
+- README: Updated the installation instructions for [compatibility with Composer >= 2.2][composer22announce].
+- Composer: The package will now identify itself as a static analysis tool. Thanks [@GaryJones]!
+- Other housekeeping and minor documentation updates.
+
+[composer22announce]: https://blog.packagist.com/composer-2-2/#more-secure-plugin-execution
+
 ### 1.3.1 - 2021-02-15
 
 - The recommended version of the [Composer PHPCS plugin] is now `^0.7.0`, which offers compatibility with Composer 2.0.
 - The rulesets are now also tested against PHP 7.4 and 8.0.
-    Note: full PHP 7.4 support is only available in combination with PHP_CodeSniffer 3.5.6.
-    Note: runtime PHP 8.0 support is only available in combination with PHP_CodeSniffer 3.5.7, full support is expected in PHP_CodeSniffer 3.6.0.
+    Note: full PHP 7.4 support is only available in combination with PHP_CodeSniffer >= 3.5.6.
+    Note: runtime PHP 8.0 support is only available in combination with PHP_CodeSniffer >= 3.5.7, full support is expected in PHP_CodeSniffer 3.6.0.
 
 ### 1.3.0 - 2019-11-04
 
@@ -130,4 +138,6 @@ All code within the PHPCompatibility organisation is released under the GNU Less
 
 Initial release of PHPCompatibilityParagonie containing rulesets covering the `random_compat` and `sodium_compat` polyfill libraries.
 
-[Composer PHPCS plugin]: https://github.com/Dealerdirect/phpcodesniffer-composer-installer/
+[Composer PHPCS plugin]: https://github.com/PHPCSStandards/composer-installer/
+
+[@GaryJones]: https://github.com/GaryJones
