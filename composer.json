@@ -15,7 +15,8 @@
   } ],
   "support" : {
     "issues" : "https://github.com/PHPCompatibility/PHPCompatibilityParagonie/issues",
-    "source" : "https://github.com/PHPCompatibility/PHPCompatibilityParagonie"
+    "source" : "https://github.com/PHPCompatibility/PHPCompatibilityParagonie",
+    "security": "https://github.com/PHPCompatibility/PHPCompatibilityParagonie/security/policy"
   },
   "config": {
     "allow-plugins": {
