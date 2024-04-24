@@ -61,16 +61,38 @@ jobs:
 
     strategy:
       matrix:
-        php: ['5.4', 'latest']
-        phpcompat: ['stable']
-        experimental: [false]
-
         include:
+          # Sodium Compat 1.x is compatible with PHP 5.3 - current.
+          - php: '5.4'
+            phpcompat: 'stable'
+            sodium: '1'
+            experimental: false
+          - php: 'latest'
+            phpcompat: 'stable'
+            sodium: '1'
+            experimental: false
+
+          # Sodium Compat 2.x (master) is compatible with PHP 8.1 - current.
+          - php: '8.1'
+            phpcompat: 'stable'
+            sodium: 'dev'
+            experimental: false
+          - php: 'latest'
+            phpcompat: 'stable'
+            sodium: 'dev'
+            experimental: false
+
+          # Experimental builds against PHPCompatibility 10.
           - php: '7.4'
             phpcompat: 'dev-develop as 9.99.99'
+            sodium: '1'
+            experimental: true
+          - php: '8.1'
+            phpcompat: 'dev-develop as 9.99.99'
+            sodium: 'dev'
             experimental: true
 
-    name: "Test: PHP ${{ matrix.php }} - PHPCompat ${{ matrix.phpcompat }}"
+    name: "Test: PHP ${{ matrix.php }} - PHPCompat ${{ matrix.phpcompat != 'stable' && ' dev' || 'stable' }} - Sodium  ${{ matrix.sodium }}"
     continue-on-error: ${{ matrix.experimental }}
 
     steps:
@@ -90,6 +112,11 @@ jobs:
           composer config minimum-stability dev
           composer require --no-update phpcompatibility/php-compatibility:"${{ matrix.phpcompat }}" --no-interaction
 
+      - name: Conditionally update Sodium Compat
+        if: ${{ matrix.sodium != 'dev' }}
+        run: |
+          composer require --no-update paragonie/sodium_compat:"^${{ matrix.sodium }}.0" --no-interaction
+
       - name: Install dependencies
         run: composer install --no-interaction --no-progress
 
@@ -99,13 +126,25 @@ jobs:
         run: composer validate --no-check-all --strict
 
       # Make sure that known polyfills don't trigger any errors.
-      - name: Test the rulesets
-        run: |
-          vendor/bin/phpcs -ps ./Test/ParagonieRandomCompatTest.php --standard=PHPCompatibilityParagonieRandomCompat --runtime-set testVersion 5.2-
-          vendor/bin/phpcs -ps ./Test/ParagonieSodiumCompatTest.php --standard=PHPCompatibilityParagonieSodiumCompat --runtime-set testVersion 5.3-
+      - name: Test the RandomCompat ruleset
+        run: vendor/bin/phpcs -ps ./Test/ParagonieRandomCompatTest.php --standard=PHPCompatibilityParagonieRandomCompat --runtime-set testVersion 5.2-
+
+      - name: "Test the SodiumCompat ruleset (1.x)"
+        if: ${{ matrix.sodium != 'dev' }}
+        run: vendor/bin/phpcs -ps ./Test/ParagonieSodiumCompatTest.php --standard=PHPCompatibilityParagonieSodiumCompat --runtime-set testVersion 5.3-
+
+      - name: "Test the SodiumCompat ruleset (2.x)"
+        if: ${{ matrix.sodium == 'dev' }}
+        run: vendor/bin/phpcs -ps ./Test/ParagonieSodiumCompatTest.php --standard=PHPCompatibilityParagonieSodiumCompat --runtime-set testVersion 8.1-
 
       # Check that the rulesets don't throw unnecessary errors for the compat libraries themselves.
-      - name: Test running against the polyfills
-        run: |
-          vendor/bin/phpcs -ps ./vendor/paragonie/random_compat/ --standard=PHPCompatibilityParagonieRandomCompat --runtime-set testVersion 5.2- --ignore=/random_compat/psalm-autoload.php,/random_compat/phpunit-autoload.php,/random_compat/tests/*,/random_compat/other/*
-          vendor/bin/phpcs -ps ./vendor/paragonie/sodium_compat/ --standard=PHPCompatibilityParagonieSodiumCompat --runtime-set testVersion 5.3- --ignore=/sodium_compat/tests/*
+      - name: Test running against the RandomCompat polyfills
+        run: vendor/bin/phpcs -ps ./vendor/paragonie/random_compat/ --standard=PHPCompatibilityParagonieRandomCompat --runtime-set testVersion 5.2- --ignore=/random_compat/psalm-autoload.php,/random_compat/phpunit-autoload.php,/random_compat/tests/*,/random_compat/other/*
+
+      - name: "Test running against the SodiumCompat polyfills (1.x)"
+        if: ${{ matrix.sodium != 'dev' }}
+        run: vendor/bin/phpcs -ps ./vendor/paragonie/sodium_compat/ --standard=PHPCompatibilityParagonieSodiumCompat --runtime-set testVersion 5.3- --ignore=/sodium_compat/tests/*
+
+      - name: "Test running against the SodiumCompat polyfills (2.x)"
+        if: ${{ matrix.sodium == 'dev' }}
+        run: vendor/bin/phpcs -ps ./vendor/paragonie/sodium_compat/ --standard=PHPCompatibilityParagonieSodiumCompat --runtime-set testVersion 8.1- --ignore=/sodium_compat/tests/*
