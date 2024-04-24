@@ -71,34 +71,28 @@ jobs:
           - php: '5.4'
             phpcompat: 'stable'
             sodium: '1'
-            experimental: false
           - php: 'latest'
             phpcompat: 'stable'
             sodium: '1'
-            experimental: false
 
           # Sodium Compat 2.x (master) is compatible with PHP 8.1 - current.
           - php: '8.1'
             phpcompat: 'stable'
             sodium: 'dev'
-            experimental: false
           - php: 'latest'
             phpcompat: 'stable'
             sodium: 'dev'
-            experimental: false
 
           # Experimental builds against PHPCompatibility 10.
           - php: '7.4'
             phpcompat: 'dev-develop as 9.99.99'
             sodium: '1'
-            experimental: true
           - php: '8.1'
             phpcompat: 'dev-develop as 9.99.99'
             sodium: 'dev'
-            experimental: true
 
     name: "Test: PHP ${{ matrix.php }} - PHPCompat ${{ matrix.phpcompat != 'stable' && ' dev' || 'stable' }} - Sodium  ${{ matrix.sodium }}"
-    continue-on-error: ${{ matrix.experimental }}
+    continue-on-error: ${{ matrix.phpcompat != 'stable' }}
 
     steps:
       - name: Checkout code
