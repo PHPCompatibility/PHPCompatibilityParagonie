@@ -1,7 +1,7 @@
-[![Latest Stable Version](https://poser.pugx.org/phpcompatibility/phpcompatibility-paragonie/v/stable.png)](https://packagist.org/packages/phpcompatibility/phpcompatibility-paragonie)
-[![Latest Unstable Version](https://poser.pugx.org/phpcompatibility/phpcompatibility-paragonie/v/unstable.png)](https://packagist.org/packages/phpcompatibility/phpcompatibility-paragonie)
-[![License](https://poser.pugx.org/phpcompatibility/phpcompatibility-paragonie/license.png)](https://github.com/PHPCompatibility/PHPCompatibilityParagonie/blob/master/LICENSE)
-[![Build Status](https://github.com/PHPCompatibility/PHPCompatibilityParagonie/workflows/CI/badge.svg?branch=master)](https://github.com/PHPCompatibility/PHPCompatibilityParagonie/actions)
+[![Latest Stable Version](https://img.shields.io/packagist/v/phpcompatibility/phpcompatibility-paragonie?label=stable)](https://packagist.org/packages/phpcompatibility/phpcompatibility-paragonie)
+[![Latest Unstable Version](https://img.shields.io/badge/unstable-dev--develop-e68718.svg?maxAge=2419200)](https://packagist.org/packages/phpcompatibility/phpcompatibility-paragonie)
+[![License](https://img.shields.io/github/license/PHPCompatibility/PHPCompatibilityParagonie?color=00a7a7)](https://github.com/PHPCompatibility/PHPCompatibilityParagonie/blob/master/LICENSE)
+[![Build Status](https://github.com/PHPCompatibility/PHPCompatibilityParagonie/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/PHPCompatibility/PHPCompatibilityParagonie/actions/workflows/ci.yml)
 
 # PHPCompatibilityParagonie
 
