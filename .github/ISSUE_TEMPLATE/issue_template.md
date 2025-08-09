@@ -1,3 +1,8 @@
+---
+name: Generic issue
+about: Use this template for all issues.
+---
+
 <!--
 This repository is only for the PHPCompatibilityParagonie rulesets, which prevent false positives from the PHPCompatibility standard by excluding the poly-fills which are provided by the various Paragonie polyfill libraries.
 
