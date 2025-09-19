@@ -97,6 +97,12 @@ All code within the PHPCompatibility organisation is released under the GNU Less
 
 ## Changelog
 
+### 1.3.4 - 2025-09-19
+
+* Prevent a new false positive when the ruleset is run over the code of the latest 1.x version of the `sodium_compat` polyfill itself.
+* Rulesets now annotate which schema they comply with.
+* Other housekeeping and minor documentation updates.
+
 ### 1.3.3 - 2024-04-25
 
 * Prevent a new false positive when the ruleset is run over the code of the latest 1.x version of the `sodium_compat` polyfill itself.
@@ -105,16 +111,16 @@ All code within the PHPCompatibility organisation is released under the GNU Less
 
 ### 1.3.2 - 2022-10-25
 
-- README: Updated the installation instructions for [compatibility with Composer >= 2.2][composer22announce].
-- Composer: The package will now identify itself as a static analysis tool. Thanks [@GaryJones]!
-- Other housekeeping and minor documentation updates.
+* README: Updated the installation instructions for [compatibility with Composer >= 2.2][composer22announce].
+* Composer: The package will now identify itself as a static analysis tool. Thanks [@GaryJones]!
+* Other housekeeping and minor documentation updates.
 
 [composer22announce]: https://blog.packagist.com/composer-2-2/#more-secure-plugin-execution
 
 ### 1.3.1 - 2021-02-15
 
-- The recommended version of the [Composer PHPCS plugin] is now `^0.7.0`, which offers compatibility with Composer 2.0.
-- The rulesets are now also tested against PHP 7.4 and 8.0.
+* The recommended version of the [Composer PHPCS plugin] is now `^0.7.0`, which offers compatibility with Composer 2.0.
+* The rulesets are now also tested against PHP 7.4 and 8.0.
     Note: full PHP 7.4 support is only available in combination with PHP_CodeSniffer >= 3.5.6.
     Note: runtime PHP 8.0 support is only available in combination with PHP_CodeSniffer >= 3.5.7, full support is expected in PHP_CodeSniffer 3.6.0.
 
