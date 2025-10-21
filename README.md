@@ -1,7 +1,7 @@
 # PHPCompatibilityParagonie
 
 [![Latest Stable Version](https://img.shields.io/packagist/v/phpcompatibility/phpcompatibility-paragonie?label=stable)][packagist]
-[![Latest Unstable Version](https://img.shields.io/badge/unstable-dev--develop-e68718.svg?maxAge=2419200)][packagist]
+[![Latest Unstable Version](https://img.shields.io/packagist/v/phpcompatibility/phpcompatibility-paragonie?include_prereleases&label=pre-release)][packagist]
 [![License](https://img.shields.io/github/license/PHPCompatibility/PHPCompatibilityParagonie?color=00a7a7)](https://github.com/PHPCompatibility/PHPCompatibilityParagonie/blob/master/LICENSE)
 [![Build Status](https://github.com/PHPCompatibility/PHPCompatibilityParagonie/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/PHPCompatibility/PHPCompatibilityParagonie/actions/workflows/ci.yml)
 
