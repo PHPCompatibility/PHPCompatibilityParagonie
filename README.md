@@ -1,9 +1,9 @@
+# PHPCompatibilityParagonie
+
 [![Latest Stable Version](https://img.shields.io/packagist/v/phpcompatibility/phpcompatibility-paragonie?label=stable)](https://packagist.org/packages/phpcompatibility/phpcompatibility-paragonie)
 [![Latest Unstable Version](https://img.shields.io/badge/unstable-dev--develop-e68718.svg?maxAge=2419200)](https://packagist.org/packages/phpcompatibility/phpcompatibility-paragonie)
 [![License](https://img.shields.io/github/license/PHPCompatibility/PHPCompatibilityParagonie?color=00a7a7)](https://github.com/PHPCompatibility/PHPCompatibilityParagonie/blob/master/LICENSE)
 [![Build Status](https://github.com/PHPCompatibility/PHPCompatibilityParagonie/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/PHPCompatibility/PHPCompatibilityParagonie/actions/workflows/ci.yml)
-
-# PHPCompatibilityParagonie
 
 Using PHPCompatibilityParagonie, you can analyse the codebase of a project using either of the Paragonie polyfills, for PHP cross-version compatibility.
 
@@ -14,10 +14,10 @@ Two rulesets for PHP_CodeSniffer to check for PHP cross-version compatibility is
 
 These rulesets prevent false positives from the [PHPCompatibility standard](https://github.com/PHPCompatibility/PHPCompatibility) by excluding back-fills and poly-fills which are provided by those libraries.
 
-Paragonie Polyfill Library | Corresponding PHPCompatibility Ruleset | Includes
---- | --- | ---
-[`random_compat`](https://github.com/paragonie/random_compat) | `PHPCompatibilityParagonieRandomCompat`
-[`sodium_compat`](https://github.com/paragonie/sodium_compat) | `PHPCompatibilityParagonieSodiumCompat` | `PHPCompatibilityParagonieRandomCompat`
+| Paragonie Polyfill Library                                    | Corresponding PHPCompatibility Ruleset  | Includes                                |
+|---------------------------------------------------------------|-----------------------------------------|-----------------------------------------|
+| [`random_compat`](https://github.com/paragonie/random_compat) | `PHPCompatibilityParagonieRandomCompat` |                                         |
+| [`sodium_compat`](https://github.com/paragonie/sodium_compat) | `PHPCompatibilityParagonieSodiumCompat` | `PHPCompatibilityParagonieRandomCompat` |
 
 > Note:
 > As the `sodium_compat` library has `random_compat` [as a dependency](https://github.com/paragonie/sodium_compat/blob/master/composer.json), the `PHPCompatibilityParagonieSodiumCompat` ruleset includes the `PHPCompatibilityParagonieRandomCompat` ruleset.
@@ -28,8 +28,8 @@ Paragonie Polyfill Library | Corresponding PHPCompatibility Ruleset | Includes
 ## Requirements
 
 * [PHP_CodeSniffer](https://github.com/PHPCSStandards/PHP_CodeSniffer).
-    * PHP 5.3+ for use with [PHP_CodeSniffer](https://github.com/PHPCSStandards/PHP_CodeSniffer) 2.3.0+.
-    * PHP 5.4+ for use with [PHP_CodeSniffer](https://github.com/PHPCSStandards/PHP_CodeSniffer) 3.0.2+.
+    - PHP 5.3+ for use with [PHP_CodeSniffer](https://github.com/PHPCSStandards/PHP_CodeSniffer) 2.3.0+.
+    - PHP 5.4+ for use with [PHP_CodeSniffer](https://github.com/PHPCSStandards/PHP_CodeSniffer) 3.0.2+.
 
     Use the latest stable release of PHP_CodeSniffer for the best results.
     The minimum _recommended_ version of PHP_CodeSniffer is version 2.6.0.
@@ -92,4 +92,4 @@ By default PHP_CodeSniffer will analyse PHP, JavaScript and CSS files. As the PH
 
 ## License
 
-All code within the PHPCompatibility organisation is released under the GNU Lesser General Public License (LGPL). For more information, visit https://www.gnu.org/copyleft/lesser.html
+All code within the PHPCompatibility organisation is released under the GNU Lesser General Public License (LGPL). For more information, visit <https://www.gnu.org/licenses/lgpl-3.0.html>.
