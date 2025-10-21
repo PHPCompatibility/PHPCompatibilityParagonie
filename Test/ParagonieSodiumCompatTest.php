@@ -1,8 +1,6 @@
 <?php
 /*
  * Test file to run PHP_CodeSniffer against to make sure the polyfills are correctly excluded.
- *
- * {@internal This file is incomplete and only does a spot check!}}
  */
 try {
 	$a = sodium_crypto_pwhash_str();
@@ -14,6 +12,7 @@ try {
 
 function SodiumExceptionTypeHint( SodiumException $a ) {}
 
+// php72compat.php
 echo SODIUM_BASE64_VARIANT_ORIGINAL;
 echo SODIUM_BASE64_VARIANT_ORIGINAL_NO_PADDING;
 echo SODIUM_BASE64_VARIANT_URLSAFE;
@@ -49,6 +48,7 @@ echo SODIUM_CRYPTO_KDF_CONTEXTBYTES;
 echo SODIUM_CRYPTO_KDF_KEYBYTES;
 echo SODIUM_CRYPTO_KX_BYTES;
 echo SODIUM_CRYPTO_KX_KEYPAIRBYTES;
+echo SODIUM_CRYPTO_KX_PRIMITIVE;
 echo SODIUM_CRYPTO_KX_PUBLICKEYBYTES;
 echo SODIUM_CRYPTO_KX_SECRETKEYBYTES;
 echo SODIUM_CRYPTO_KX_SEEDBYTES;
@@ -77,18 +77,19 @@ echo SODIUM_CRYPTO_PWHASH_SCRYPTSALSA208SHA256_OPSLIMIT_SENSITIVE;
 echo SODIUM_CRYPTO_PWHASH_SCRYPTSALSA208SHA256_MEMLIMIT_SENSITIVE;
 echo SODIUM_CRYPTO_SCALARMULT_BYTES;
 echo SODIUM_CRYPTO_SCALARMULT_SCALARBYTES;
+echo SODIUM_CRYPTO_SECRETBOX_KEYBYTES;
+echo SODIUM_CRYPTO_SECRETBOX_MACBYTES;
+echo SODIUM_CRYPTO_SECRETBOX_NONCEBYTES;
 echo SODIUM_CRYPTO_SECRETSTREAM_XCHACHA20POLY1305_ABYTES;
 echo SODIUM_CRYPTO_SECRETSTREAM_XCHACHA20POLY1305_HEADERBYTES;
 echo SODIUM_CRYPTO_SECRETSTREAM_XCHACHA20POLY1305_KEYBYTES;
 echo SODIUM_CRYPTO_SECRETSTREAM_XCHACHA20POLY1305_MESSAGEBYTES_MAX;
+echo SODIUM_CRYPTO_SECRETSTREAM_XCHACHA20POLY1305_TAG_PULL;
 echo SODIUM_CRYPTO_SECRETSTREAM_XCHACHA20POLY1305_TAG_PUSH;
 echo SODIUM_CRYPTO_SECRETSTREAM_XCHACHA20POLY1305_TAG_REKEY;
 echo SODIUM_CRYPTO_SECRETSTREAM_XCHACHA20POLY1305_TAG_FINAL;
 echo SODIUM_CRYPTO_SHORTHASH_BYTES;
 echo SODIUM_CRYPTO_SHORTHASH_KEYBYTES;
-echo SODIUM_CRYPTO_SECRETBOX_KEYBYTES;
-echo SODIUM_CRYPTO_SECRETBOX_MACBYTES;
-echo SODIUM_CRYPTO_SECRETBOX_NONCEBYTES;
 echo SODIUM_CRYPTO_SIGN_BYTES;
 echo SODIUM_CRYPTO_SIGN_SEEDBYTES;
 echo SODIUM_CRYPTO_SIGN_PUBLICKEYBYTES;
@@ -96,6 +97,8 @@ echo SODIUM_CRYPTO_SIGN_SECRETKEYBYTES;
 echo SODIUM_CRYPTO_SIGN_KEYPAIRBYTES;
 echo SODIUM_CRYPTO_STREAM_KEYBYTES;
 echo SODIUM_CRYPTO_STREAM_NONCEBYTES;
+echo SODIUM_CRYPTO_STREAM_XCHACHA20_KEYBYTES;
+echo SODIUM_CRYPTO_STREAM_XCHACHA20_NONCEBYTES;
 echo SODIUM_LIBRARY_MAJOR_VERSION;
 echo SODIUM_LIBRARY_MINOR_VERSION;
 echo SODIUM_LIBRARY_VERSION;
@@ -136,6 +139,7 @@ sodium_crypto_generichash_init();
 sodium_crypto_generichash_keygen();
 sodium_crypto_generichash_update();
 sodium_crypto_kdf_derive_from_key();
+sodium_crypto_kdf_keygen();
 sodium_crypto_kx();
 sodium_crypto_kx_client_session_keys();
 sodium_crypto_kx_keypair();
@@ -143,6 +147,7 @@ sodium_crypto_kx_publickey();
 sodium_crypto_kx_secretkey();
 sodium_crypto_kx_seed_keypair();
 sodium_crypto_kx_server_session_keys();
+sodium_crypto_pwhash();
 sodium_crypto_pwhash_str();
 sodium_crypto_pwhash_str_needs_rehash();
 sodium_crypto_pwhash_str_verify();
@@ -183,8 +188,54 @@ sodium_library_version_major();
 sodium_library_version_minor();
 sodium_version_string();
 sodium_memcmp();
+sodium_memzero();
 sodium_pad();
 sodium_randombytes_buf();
 sodium_randombytes_uniform();
 sodium_randombytes_random16();
 sodium_unpad();
+
+// php84compat.php
+echo SODIUM_CRYPTO_AEAD_AEGIS128L_KEYBYTES;
+echo SODIUM_CRYPTO_AEAD_AEGIS128L_NSECBYTES;
+echo SODIUM_CRYPTO_AEAD_AEGIS128L_NPUBBYTES;
+echo SODIUM_CRYPTO_AEAD_AEGIS128L_ABYTES;
+echo SODIUM_CRYPTO_AEAD_AEGIS256_KEYBYTES;
+echo SODIUM_CRYPTO_AEAD_AEGIS256_NSECBYTES;
+echo SODIUM_CRYPTO_AEAD_AEGIS256_NPUBBYTES;
+echo SODIUM_CRYPTO_AEAD_AEGIS256_ABYTES;
+
+sodium_crypto_aead_aegis128l_decrypt();
+sodium_crypto_aead_aegis128l_encrypt();
+sodium_crypto_aead_aegis256_decrypt();
+sodium_crypto_aead_aegis256_encrypt();
+
+// ristretto255.php
+echo SODIUM_CRYPTO_CORE_RISTRETTO255_BYTES;
+echo SODIUM_CRYPTO_CORE_RISTRETTO255_HASHBYTES;
+echo SODIUM_CRYPTO_CORE_RISTRETTO255_SCALARBYTES;
+echo SODIUM_CRYPTO_CORE_RISTRETTO255_NONREDUCEDSCALARBYTES;
+echo SODIUM_CRYPTO_SCALARMULT_RISTRETTO255_SCALARBYTES;
+echo SODIUM_CRYPTO_SCALARMULT_RISTRETTO255_BYTES;
+
+sodium_crypto_core_ristretto255_add();
+sodium_crypto_core_ristretto255_from_hash();
+sodium_crypto_core_ristretto255_is_valid_point();
+sodium_crypto_core_ristretto255_random();
+sodium_crypto_core_ristretto255_scalar_add();
+sodium_crypto_core_ristretto255_scalar_complement();
+sodium_crypto_core_ristretto255_scalar_invert();
+sodium_crypto_core_ristretto255_scalar_mul();
+sodium_crypto_core_ristretto255_scalar_negate();
+sodium_crypto_core_ristretto255_scalar_random();
+sodium_crypto_core_ristretto255_scalar_reduce();
+sodium_crypto_core_ristretto255_scalar_sub();
+sodium_crypto_core_ristretto255_sub();
+sodium_crypto_scalarmult_ristretto255();
+sodium_crypto_scalarmult_ristretto255_base();
+
+// stream-xchacha20.php
+sodium_crypto_stream_xchacha20();
+sodium_crypto_stream_xchacha20_keygen();
+sodium_crypto_stream_xchacha20_xor();
+sodium_crypto_stream_xchacha20_xor_ic();

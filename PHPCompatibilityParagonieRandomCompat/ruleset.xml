@@ -19,10 +19,16 @@
     </rule>
 
     <!-- Prevent false positives being thrown when run over the code of random_compat itself. -->
-    <rule ref="PHPCompatibility.IniDirectives.RemovedIniDirectives.mbstring_func_overloadDeprecated">
+    <rule ref="PHPCompatibility.Constants.RemovedConstants.mb_overload_stringRemoved">
+        <exclude-pattern>/random_compat/lib/byte_safe_strings\.php$</exclude-pattern>
+    </rule>
+    <rule ref="PHPCompatibility.IniDirectives.RemovedIniDirectives.mbstring_func_overloadDeprecatedRemoved">
         <exclude-pattern>/random_compat/lib/byte_safe_strings\.php$</exclude-pattern>
     </rule>
     <rule ref="PHPCompatibility.FunctionUse.NewFunctions.stream_set_chunk_sizeFound">
+        <exclude-pattern>/random_compat/lib/random_bytes_dev_urandom\.php$</exclude-pattern>
+    </rule>
+    <rule ref="PHPCompatibility.FunctionUse.NewFunctions.stream_set_read_bufferFound">
         <exclude-pattern>/random_compat/lib/random_bytes_dev_urandom\.php$</exclude-pattern>
     </rule>
     <rule ref="PHPCompatibility.Constants.RemovedConstants.mcrypt_dev_urandomDeprecatedRemoved">
@@ -34,7 +40,12 @@
     <rule ref="PHPCompatibility.FunctionUse.RemovedFunctions.mcrypt_create_ivDeprecatedRemoved">
         <exclude-pattern>/random_compat/lib/random_bytes_mcrypt\.php$</exclude-pattern>
     </rule>
+    <!-- PHPCS 3.x -->
     <rule ref="PHPCompatibility.LanguageConstructs.NewLanguageConstructs.t_ns_separatorFound">
+        <exclude-pattern>/random_compat/lib/random_bytes_libsodium\.php$</exclude-pattern>
+    </rule>
+    <!-- PHPCS 4.x -->
+    <rule ref="PHPCompatibility.LanguageConstructs.NewLanguageConstructs.t_name_fully_qualifiedFound">
         <exclude-pattern>/random_compat/lib/random_bytes_libsodium\.php$</exclude-pattern>
     </rule>
 
