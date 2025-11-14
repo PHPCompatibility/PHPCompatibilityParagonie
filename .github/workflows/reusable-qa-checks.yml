@@ -1,0 +1,154 @@
+name: CI
+
+on:
+  workflow_call:
+
+permissions: {}
+
+jobs:
+  xmllint:
+    name: 'Check XML'
+    runs-on: ubuntu-latest
+
+    env:
+      XMLLINT_INDENT: '    '
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        with:
+          persist-credentials: false
+
+      - name: Install PHP
+        uses: shivammathur/setup-php@bf6b4fbd49ca58e4608c9c89fba0b8d90bd2a39f # 2.35.5
+        with:
+          php-version: 'latest'
+          coverage: none
+
+      # Install dependencies to make sure the PHPCS XSD file is available.
+      - name: Install dependencies
+        run: composer install --no-dev --no-interaction --no-progress
+
+      - name: Validate Ruleset XML file against schema
+        uses: phpcsstandards/xmllint-validate@0fd9c4a9046055f621fca4bbdccb8eab1fd59fdc # v1.0.1
+        with:
+          pattern: "./*/ruleset.xml"
+          xsd-file: "vendor/squizlabs/php_codesniffer/phpcs.xsd"
+
+      # Check the code-style consistency of the xml files.
+      # Note: this needs xmllint, but that will be installed via the phpcsstandards/xmllint-validate action runner.
+      - name: Check code style
+        run: |
+          diff -B ./PHPCompatibilityParagonieRandomCompat/ruleset.xml <(xmllint --format "./PHPCompatibilityParagonieRandomCompat/ruleset.xml")
+          diff -B ./PHPCompatibilityParagonieSodiumCompat/ruleset.xml <(xmllint --format "./PHPCompatibilityParagonieSodiumCompat/ruleset.xml")
+
+  test:
+    needs: xmllint
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        include:
+          # Sodium Compat 1.x is compatible with PHP 5.3 - current.
+          - php: '5.4'
+            phpcompat: 'stable'
+            sodium: '1'
+          - php: 'latest'
+            phpcompat: 'stable'
+            sodium: '1'
+
+          # Sodium Compat 2.x (master) is compatible with PHP 8.1 - current.
+          - php: '8.1'
+            phpcompat: 'stable'
+            sodium: 'dev'
+          - php: 'latest'
+            phpcompat: 'stable'
+            sodium: 'dev'
+
+          # Experimental builds against PHPCompatibility 10.
+          - php: '7.4'
+            phpcompat: 'dev-develop as 10.99.99'
+            sodium: '1'
+          - php: '8.1'
+            phpcompat: 'dev-develop as 9.99.99'
+            sodium: 'dev'
+
+    name: "Test: PHP ${{ matrix.php }} - PHPCompat ${{ matrix.phpcompat != 'stable' && ' dev' || 'stable' }} - Sodium  ${{ matrix.sodium }}"
+    continue-on-error: ${{ matrix.phpcompat != 'stable' }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        with:
+          persist-credentials: false
+
+      - name: Install PHP
+        uses: shivammathur/setup-php@bf6b4fbd49ca58e4608c9c89fba0b8d90bd2a39f # 2.35.5
+        with:
+          php-version: ${{ matrix.php }}
+          ini-values: error_reporting=E_ALL, display_errors=On, display_startup_errors=On
+          coverage: none
+
+      - name: Conditionally update PHPCompatibility to develop version
+        if: ${{ matrix.phpcompat != 'stable' }}
+        run: |
+          composer config minimum-stability dev
+          composer require --no-update phpcompatibility/php-compatibility:"${{ matrix.phpcompat }}" --no-interaction
+
+      - name: Conditionally update Sodium Compat
+        if: ${{ matrix.sodium != 'dev' }}
+        run: |
+          composer require --no-update paragonie/sodium_compat:"^${{ matrix.sodium }}.0" --no-interaction
+
+      - name: Install dependencies
+        run: composer install --no-interaction --no-progress
+
+      # Validate the composer.json file.
+      # @link https://getcomposer.org/doc/03-cli.md#validate
+      - name: Validate Composer installation
+        run: composer validate --no-check-all --strict
+
+      # Make sure that known polyfills don't trigger any errors.
+      - name: Test the RandomCompat ruleset
+        run: >
+          vendor/bin/phpcs -ps ./Test/ParagonieRandomCompatTest.php --standard=PHPCompatibilityParagonieRandomCompat
+          --exclude=PHPCompatibility.Upgrade.LowPHP
+          --runtime-set testVersion 5.2-
+
+      - name: "Test the SodiumCompat ruleset (1.x)"
+        if: ${{ matrix.sodium != 'dev' }}
+        run: >
+          vendor/bin/phpcs -ps ./Test/ParagonieSodiumCompatTest.php --standard=PHPCompatibilityParagonieSodiumCompat
+          --exclude=PHPCompatibility.Upgrade.LowPHP
+          --runtime-set testVersion 5.3-
+
+      - name: "Test the SodiumCompat ruleset (2.x)"
+        if: ${{ matrix.sodium == 'dev' }}
+        run: >
+          vendor/bin/phpcs -ps ./Test/ParagonieSodiumCompatTest.php --standard=PHPCompatibilityParagonieSodiumCompat
+          --exclude=PHPCompatibility.Upgrade.LowPHP
+          --runtime-set testVersion 8.1-
+
+      # Check that the rulesets don't throw unnecessary errors for the compat libraries themselves.
+      - name: Test running against the RandomCompat polyfills
+        run: >
+          vendor/bin/phpcs -ps ./vendor/paragonie/random_compat/ --standard=PHPCompatibilityParagonieRandomCompat
+          --exclude=PHPCompatibility.Upgrade.LowPHP
+          --ignore=/random_compat/psalm-autoload.php,/random_compat/phpunit-autoload.php,/random_compat/tests/*,/random_compat/other/*
+          --runtime-set testVersion 5.2-
+
+      - name: "Test running against the SodiumCompat polyfills (1.x)"
+        if: ${{ matrix.sodium != 'dev' }}
+        run: >
+          vendor/bin/phpcs -ps ./vendor/paragonie/sodium_compat/ --standard=PHPCompatibilityParagonieSodiumCompat
+          --exclude=PHPCompatibility.Upgrade.LowPHP
+          --ignore=/sodium_compat/tests/*
+          --runtime-set testVersion 5.3-
+
+      - name: "Test running against the SodiumCompat polyfills (2.x)"
+        if: ${{ matrix.sodium == 'dev' }}
+        run: >
+          vendor/bin/phpcs -ps ./vendor/paragonie/sodium_compat/ --standard=PHPCompatibilityParagonieSodiumCompat
+          --exclude=PHPCompatibility.Upgrade.LowPHP
+          --ignore=/sodium_compat/tests/*
+          --runtime-set testVersion 8.1-
