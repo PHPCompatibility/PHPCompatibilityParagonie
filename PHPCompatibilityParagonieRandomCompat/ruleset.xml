@@ -48,5 +48,8 @@
     <rule ref="PHPCompatibility.LanguageConstructs.NewLanguageConstructs.t_name_fully_qualifiedFound">
         <exclude-pattern>/random_compat/lib/random_bytes_libsodium\.php$</exclude-pattern>
     </rule>
+    <rule ref="PHPCompatibility.IniDirectives.RemovedIniDirectives.disable_classesRemoved">
+        <exclude-pattern>/random_compat/lib/random\.php$</exclude-pattern>
+    </rule>
 
 </ruleset>
