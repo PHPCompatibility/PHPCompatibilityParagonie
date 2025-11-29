@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
+## [2.0.0-alpha2] - 2025-11-29
+
+* Prevent a new false positive when the ruleset is run over the code of the `random_compat` polyfill itself with PHPCompatibility 10.0.0-alpha2.
+* Miscellaneous housekeeping.
+
 ## [2.0.0-alpha1] - 2025-10-21
 
 * Composer: The PHPCompatibility dependency has been updated to the recently released 10.0.0-alpha1 version.
@@ -78,6 +83,7 @@ Initial release of PHPCompatibilityParagonie containing rulesets covering the `r
 
 [Composer PHPCS plugin]: https://github.com/PHPCSStandards/composer-installer/
 
+[2.0.0-alpha2]: https://github.com/PHPCompatibility/PHPCompatibilityParagonie/compare/2.0.0-alpha1...2.0.0-alpha2
 [2.0.0-alpha1]: https://github.com/PHPCompatibility/PHPCompatibilityParagonie/compare/1.3.4...2.0.0-alpha1
 [1.3.4]:        https://github.com/PHPCompatibility/PHPCompatibilityParagonie/compare/1.3.3...1.3.4
 [1.3.3]:        https://github.com/PHPCompatibility/PHPCompatibilityParagonie/compare/1.3.2...1.3.3
