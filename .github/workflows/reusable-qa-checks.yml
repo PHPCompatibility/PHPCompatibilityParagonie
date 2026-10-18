@@ -74,11 +74,11 @@ jobs:
       # which would be served on different PHP versions.
       # Also: as this package is no longer in active development, we don't need to test against a "dev" version.
       matrix:
-        php: ['5.4', 'latest']
+        php: ['7.2', 'latest']
         phpcompat: ['stable']
 
         include:
-          - php: '7.4'
+          - php: '8.2'
             phpcompat: 'dev-develop'
 
     continue-on-error: ${{ matrix.phpcompat != 'stable' }}
@@ -123,16 +123,14 @@ jobs:
       - name: Test the RandomCompat ruleset
         run: >
           vendor/bin/phpcs -ps ./Test/ParagonieRandomCompatTest.php --standard=PHPCompatibilityParagonieRandomCompat
-          --exclude=PHPCompatibility.Upgrade.LowPHP
           --runtime-set testVersion 5.2-
 
       # Check that the ruleset doesn't throw unnecessary errors for code in the random compat library itself.
       - name: Test running against the RandomCompat polyfills
         # No need to run this on multiple PHP versions, but we do want to run it against PHPCompat stable + dev.
-        if: ${{ matrix.php != '5.4' }}
+        if: ${{ matrix.php != '7.2' }}
         run: >
           vendor/bin/phpcs -ps ./vendor/paragonie/random_compat/ --standard=PHPCompatibilityParagonieRandomCompat
-          --exclude=PHPCompatibility.Upgrade.LowPHP
           --ignore=/random_compat/psalm-autoload.php,/random_compat/phpunit-autoload.php,/random_compat/tests/*,/random_compat/other/*
           --runtime-set testVersion 5.2-
 
@@ -146,7 +144,7 @@ jobs:
       # Sodium Compat 1.x is compatible with PHP 5.3 - current.
       # Sodium Compat 2.x (master) is compatible with PHP 8.1 - current.
       matrix:
-        php: ['5.4', '8.1', 'latest']
+        php: ['7.2', '8.1', 'latest']
         phpcompat: ['stable']
         sodium: ['1', '2']
 
@@ -154,15 +152,15 @@ jobs:
           - php: '8.1'
             phpcompat: 'stable'
             sodium: '1'
-          - php: '5.4'
+          - php: '7.2'
             phpcompat: 'stable'
             sodium: '2'
 
         include:
-          - php: '7.4'
+          - php: '8.2'
             phpcompat: 'dev-develop'
             sodium: '1'
-          - php: '8.3'
+          - php: '8.4'
             phpcompat: 'dev-develop'
             sodium: 'dev'
 
@@ -207,15 +205,13 @@ jobs:
       - name: "Test the SodiumCompat ruleset"
         run: >
           vendor/bin/phpcs -ps ./Test/ParagonieSodiumCompatTest.php --standard=PHPCompatibilityParagonieSodiumCompat
-          --exclude=PHPCompatibility.Upgrade.LowPHP
           --runtime-set testVersion ${{ matrix.sodium == '1' && '5.3-' || '8.1-' }}
 
       # Check that the ruleset doesn't throw unnecessary errors for code in the sodium compat library itself.
       - name: "Test running against the SodiumCompat polyfills"
         # No need to run this on multiple PHP versions, but we do want to run it against PHPCompat stable + dev.
-        if: ${{ matrix.php != '5.4' && matrix.php != '8.1' }}
+        if: ${{ matrix.php != '7.2' && matrix.php != '8.1' }}
         run: >
           vendor/bin/phpcs -ps ./vendor/paragonie/sodium_compat/ --standard=PHPCompatibilityParagonieSodiumCompat
-          --exclude=PHPCompatibility.Upgrade.LowPHP
           --ignore=/sodium_compat/tests/*
           --runtime-set testVersion ${{ matrix.sodium == '1' && '5.3-' || '8.1-' }}
