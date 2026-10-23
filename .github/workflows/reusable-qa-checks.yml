@@ -12,14 +12,14 @@ jobs:
       contents: read # To clone the repo.
 
     name: 'Run Pinact'
-    uses: PHPCSStandards/.github/.github/workflows/reusable-pinact.yml@559f40470dbce9f7faeab31f82c0be7dfb93228e # v1.3.0
+    uses: PHPCSStandards/.github/.github/workflows/reusable-pinact.yml@5a8a6fcf1ac33b3ec6d7b826c0f319eaa83581ff # v1.3.1
 
   yamllint:
     permissions:
       contents: read # To clone the repo.
 
     name: 'Lint Yaml'
-    uses: PHPCSStandards/.github/.github/workflows/reusable-yamllint.yml@559f40470dbce9f7faeab31f82c0be7dfb93228e # v1.3.0
+    uses: PHPCSStandards/.github/.github/workflows/reusable-yamllint.yml@5a8a6fcf1ac33b3ec6d7b826c0f319eaa83581ff # v1.3.1
     with:
       strict: true
 
@@ -40,7 +40,7 @@ jobs:
           persist-credentials: false
 
       - name: Install PHP
-        uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # 2.37.2
+        uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # 2.40.0
         with:
           php-version: 'latest'
           coverage: none
@@ -93,7 +93,7 @@ jobs:
           persist-credentials: false
 
       - name: Install PHP
-        uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # 2.37.2
+        uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # 2.40.0
         with:
           php-version: ${{ matrix.php }}
           ini-values: error_reporting=E_ALL, display_errors=On, display_startup_errors=On
@@ -178,7 +178,7 @@ jobs:
           persist-credentials: false
 
       - name: Install PHP
-        uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # 2.37.2
+        uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # 2.40.0
         with:
           php-version: ${{ matrix.php }}
           ini-values: error_reporting=E_ALL, display_errors=On, display_startup_errors=On
